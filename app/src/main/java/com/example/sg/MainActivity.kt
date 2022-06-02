@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
         img = findViewById(R.id.img)
         game = findViewById(R.id.game)
@@ -44,8 +45,9 @@ class MainActivity : AppCompatActivity() {
                 job = GlobalScope.launch(Dispatchers.Main) {
                     while(flag) {
                         delay(10)
+                        game.fly.update()
                         var canvas: Canvas = game.surfaceHolder.lockCanvas()
-                        game.drawSomething(canvas)
+                            game.drawSomething(canvas)
                         game.surfaceHolder.unlockCanvasAndPost(canvas)
                     }
                 }
